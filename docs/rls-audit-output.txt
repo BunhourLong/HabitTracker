@@ -1,0 +1,12 @@
+PASS  anon cannot read habits — 0 rows
+PASS  user A sees own habits — 5 habits
+PASS  user B sees an EMPTY list (not an error) — 0 rows
+PASS  user B cannot read A's habit by id
+PASS  user B cannot read A's logs
+PASS  user B cannot rename A's habit
+PASS  user B cannot delete A's habit
+PASS  user B cannot insert a habit owned by A — new row violates row-level security policy for table "habits"
+PASS  user B cannot log against A's habit — new row violates row-level security policy for table "daily_logs"
+PASS  A's habit is unchanged — Drink 2L of water
+
+All RLS checks passed
