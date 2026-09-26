@@ -1,0 +1,8 @@
+Re-upload check: storage.objects in the avatars bucket for avatar.tester@example.com,
+after uploading my-avatar.png and then new-avatar.png through the app (upsert: true).
+
+name                                          bytes  mimetype   created_at                  updated_at
+751295a9-fbd0-40c2-a34c-8892e4f74c02/avatar   65022  image/png  2026-09-26 05:45:02.948+00  2026-09-26 05:45:04.763+00
+
+1 object in the folder. created_at < updated_at: the second upload overwrote the first
+(same path), so there are no duplicates.

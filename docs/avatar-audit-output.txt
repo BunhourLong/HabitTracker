@@ -1,0 +1,27 @@
+— client-side validation —
+PASS  5 MB PNG is refused client-side — "big.png" is 5.0 MB. The maximum is 1.0 MB.
+PASS  PDF is refused client-side — "cv.pdf" is application/pdf. Please choose a PNG, JPEG, WebP or GIF image.
+PASS  SVG is refused client-side
+PASS  empty file is refused client-side
+PASS  exactly 1 MB PNG is accepted
+PASS  1 MB + 1 byte is refused
+— storage policy (server) —
+PASS  A can upload into their own folder
+PASS  A can re-upload (upsert overwrites)
+PASS  re-upload replaced the file, no duplicates — 1 file(s) in ac358c73-6c52-44e0-8e4d-e4606f4b9800/
+PASS  5 MB upload that skips the client check is refused by the bucket — The object exceeded the maximum allowed size
+PASS  text/html upload is refused by the bucket — mime type text/html is not supported
+PASS  A cannot upload into B's folder — new row violates row-level security policy
+PASS  A cannot upload to the bucket root — new row violates row-level security policy
+PASS  B cannot overwrite A's avatar — new row violates row-level security policy
+PASS  B cannot delete A's avatar — 0 removed
+PASS  B cannot list A's folder
+PASS  signed-out visitor cannot upload — new row violates row-level security policy
+PASS  A's avatar is readable by public URL (public bucket) — HTTP 200
+— profiles table (RLS) —
+PASS  A can save their avatar_url
+PASS  B cannot read A's profile
+PASS  B cannot change A's avatar_url
+PASS  B cannot create a profile row for A — new row violates row-level security policy for table "profiles"
+
+All avatar checks passed
